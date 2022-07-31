@@ -24,40 +24,40 @@ import { numbersRef } from '../firebase'
 export default {
   name: 'Date',
   metaInfo: {
-    title: '日期',
+    title: '日期'
   },
   firebase: {
     numbers: numbersRef
   },
   data: () => ({
-      numbers: [],
-      key: '',
+    numbers: [],
+    key: ''
   }),
   methods: {
-    days: function (){
-      var ans = [];
+    days: function () {
+      var ans = []
       for (var i = 0; i < this.numbers.length; i++) {
-        let d = this.numbers[i].date;
-        if (ans.indexOf(d) == -1) {
+        let d = this.numbers[i].date
+        if (ans.indexOf(d) === -1) {
           ans.push(d)
         }
       }
       return ans
     },
-    count: function(d) {
-      var ans = 0;
+    count: function (d) {
+      var ans = 0
       for (let i = 0; i < this.numbers.length; i++) {
-        if (d == this.numbers[i].date) {
+        if (d === this.numbers[i].date) {
           ans += parseInt(this.numbers[i].number)
         }
       }
       return ans
     },
-    countY: function(d) {
-      var ns = this.numbers.filter(function(u) { return ['廣律', '廣弘', '廣成', '廣清', '聖願'].indexOf(u.n) > -1})
-      var ans = 0;
+    countY: function (d) {
+      var ns = this.numbers.filter(function (u) { return ['廣律', '廣弘', '廣成', '廣清', '聖願'].indexOf(u.n) > -1 })
+      var ans = 0
       for (let i = 0; i < ns.length; i++) {
-        if (d == ns[i].date) {
+        if (d === ns[i].date) {
           ans += parseInt(ns[i].number)
         }
       }

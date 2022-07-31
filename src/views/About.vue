@@ -39,72 +39,72 @@ import { numbersRef } from '../firebase'
 export default {
   name: 'Sum',
   metaInfo: {
-    title: '加總',
+    title: '加總'
   },
   firebase: {
     numbers: numbersRef
   },
   data: () => ({
-      numbers: [],
-      key: '',
+    numbers: [],
+    key: ''
   }),
   methods: {
-    list: function(u) {
-      var key = this.key;
-      var ans = this.numbers.filter(function(k) {
-        var re = /(.+)?[\/／\|丨\s]+/;
-        let n = k.n.replace(re, '');
-        let u2 = u.replace(re, '');
-        re = /(.+)?[〈（](.+)[）〉].*/;
-        n = n.replace(re, '$2');
-        n = n.replace('丨','');
-        re = /(.+)?[〈（](.+)[）〉].*/;
-        u2 = u2.replace(re, '$2');
-        u2 = u2.replace('丨','');
-        return n == u2;
-      });
+    list: function (u) {
+      var key = this.key
+      var ans = this.numbers.filter(function (k) {
+        var re = /(.+)?[/／|丨\s]+/
+        let n = k.n.replace(re, '')
+        let u2 = u.replace(re, '')
+        re = /(.+)?[〈（](.+)[）〉].*/
+        n = n.replace(re, '$2')
+        n = n.replace('丨', '')
+        re = /(.+)?[〈（](.+)[）〉].*/
+        u2 = u2.replace(re, '$2')
+        u2 = u2.replace('丨', '')
+        return n === u2
+      })
       if (key) {
-        ans = ans.filter(function(k) {
+        ans = ans.filter(function (k) {
           return k.n.indexOf(key) > -1
         })
       }
       return ans.slice().reverse()
     },
-    count: function(u) {
-      var ans = 0;
+    count: function (u) {
+      var ans = 0
       for (var i = 0; i < this.numbers.length; i++) {
-        var re = /(.+)?[\/／\|丨\s]+/;
-        let n = this.numbers[i].n.replace(re, '');
-        n = n.replace('丨','');
-        re = /(.+)?[〈（](.+)[）〉].*/;
-        n = n.replace(re, '$2');
-        u = u.replace('丨','');
-        u = u.replace(re, '$2');
-        if (u == n) {
-          ans += parseInt(this.numbers[i].number, 10);
+        var re = /(.+)?[/／|丨\s]+/
+        let n = this.numbers[i].n.replace(re, '')
+        n = n.replace('丨', '')
+        re = /(.+)?[〈（](.+)[）〉].*/
+        n = n.replace(re, '$2')
+        u = u.replace('丨', '')
+        u = u.replace(re, '$2')
+        if (u === n) {
+          ans += parseInt(this.numbers[i].number, 10)
         }
       }
-      return ans;
+      return ans
     },
     users: function () {
-      var u = [];
-      var key = this.key;
+      var u = []
+      var key = this.key
       for (var i = 0; i < this.numbers.length; i++) {
-        var re = /(.+?)[\/／\|丨\s]/;
-        let n = this.numbers[i].n.replace(re, '');
-        re = /(.+)?[〈（](.+)[）〉].*/;
-        n = n.replace(re, '$2');
-        n = n.replace('丨','');
-        if (u.indexOf(n) == -1) {
-          u.push(n);
+        var re = /(.+?)[/／|丨\s]/
+        let n = this.numbers[i].n.replace(re, '')
+        re = /(.+)?[〈（](.+)[）〉].*/
+        n = n.replace(re, '$2')
+        n = n.replace('丨', '')
+        if (u.indexOf(n) === -1) {
+          u.push(n)
         }
       }
       if (key) {
-        u = u.filter(function(k) {
+        u = u.filter(function (k) {
           return k.indexOf(key) > -1
         })
       }
-      return u;
+      return u
     }
   }
 }

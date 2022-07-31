@@ -14,8 +14,7 @@
         <div class="field">
 
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label> 
-        
+          <input type="text" name="" v-model = "name"/> </label>
         </div>
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：</label>
@@ -53,14 +52,12 @@
     </div>
 
     <div class="ui divider"></div>
-    
+
     <form class="ui form container" v-show="numbers[0]">
       <div class="fields">
         <div class="field">
-
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label> 
-        
+          <input type="text" name="" v-model = "name"/> </label>
         </div>
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：</label>
@@ -85,50 +82,49 @@
 </template>
 
 <script>
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 import { numbersRef } from '../firebase'
 
 export default {
   name: 'HelloWorld',
   metaInfo: {
-    title: '歡迎',
+    title: '歡迎'
   },
   firebase: {
     numbers: numbersRef
   },
   data: () => ({
-      date: new Date().getFullYear() +'/'+ parseInt(1+new Date().getMonth()) +'/'+ new Date().getDate(),
-      mode: 'today',
-      number: 0,
-      p: '',
-      msg: '',
-      key: '',
-      edit: '',
-      read: 0,
-      user: '',
-      name: '',
-      token: '',
-      numbers: [],
-      uid: '',
-      provider: '',
-      photoURL: '',
-      dismiss: false
-
+    date: new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate(),
+    mode: 'today',
+    number: 0,
+    p: '',
+    msg: '',
+    key: '',
+    edit: '',
+    read: 0,
+    user: '',
+    name: '',
+    token: '',
+    numbers: [],
+    uid: '',
+    provider: '',
+    photoURL: '',
+    dismiss: false
   }),
   methods: {
-    t:function (list) {
-      var ans = list.filter(function(u) {
-        return u.date == new Date().getFullYear() +'/'+ parseInt(1+new Date().getMonth()) +'/'+ new Date().getDate();
-      });
-      return ans;
+    t: function (list) {
+      var ans = list.filter(function (u) {
+        return u.date === new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate()
+      })
+      return ans
     },
     s: function (list) {
-      var l = list.slice().sort(function(a, b) {
-        var arr1 = a.date.split('/');
-        var arr2 = b.date.split('/');
-        var ans = (parseInt(arr2[0]) * 36500 + parseInt(arr2[1]) * 3000 + parseInt(arr2[2]) * 100) - (parseInt(arr1[0]) * 36500 + parseInt(arr1[1]) * 3000 + parseInt(arr1[2]) * 100) + parseInt(b.time) - parseInt(a.time);
-        return ans;
+      var l = list.slice().sort(function (a, b) {
+        var arr1 = a.date.split('/')
+        var arr2 = b.date.split('/')
+        var ans = (parseInt(arr2[0]) * 36500 + parseInt(arr2[1]) * 3000 + parseInt(arr2[2]) * 100) - (parseInt(arr1[0]) * 36500 + parseInt(arr1[1]) * 3000 + parseInt(arr1[2]) * 100) + parseInt(b.time) - parseInt(a.time)
+        return ans
       })
       return l
     },
@@ -142,12 +138,12 @@ export default {
         number: this.number
       }
       if (this.number) {
-        if (this.numbers.filter(function(u){
-          return u.n == o.n && u.date == o.date
-        }).length == 0) {
-          this.$firebaseRefs.numbers.push(o);
-          this.number = 0;
-          window.alert('登入成功:' + o.n + '今天念了' + o.number +  '聲佛號')
+        if (this.numbers.filter(function (u) {
+          return u.n === o.n && u.date === o.date
+        }).length === 0) {
+          this.$firebaseRefs.numbers.push(o)
+          this.number = 0
+          window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
         } else {
           window.alert('您今天已經登錄過了，請明天再來')
         }
@@ -185,20 +181,20 @@ export default {
       })
     }
   },
-  mounted() {
+  mounted () {
     if (localStorage.name) {
-      this.name = localStorage.name;
+      this.name = localStorage.name
     }
     if (localStorage.dismiss) {
-      this.dismiss = localStorage.dismiss;
+      this.dismiss = localStorage.dismiss
     }
   },
   watch: {
-    name(newName) {
-      localStorage.name = newName;
+    name (newName) {
+      localStorage.name = newName
     },
-    dismiss(newDismiss) {
-      localStorage.dismiss = newDismiss;
+    dismiss (newDismiss) {
+      localStorage.dismiss = newDismiss
     }
   }
 }
@@ -228,7 +224,6 @@ a {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
-
 
 @-webkit-keyframes tada {
   0% {
@@ -299,4 +294,3 @@ a {
 }
 
 </style>
-

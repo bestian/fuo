@@ -34,58 +34,58 @@ import { numbersRef } from '../firebase'
 export default {
   name: 'Rank',
   metaInfo: {
-    title: '榮譽榜',
+    title: '榮譽榜'
   },
   firebase: {
     numbers: numbersRef
   },
   data: () => ({
-      numbers: [],
-      key: '',
-      dismiss2: false
+    numbers: [],
+    key: '',
+    dismiss2: false
   }),
   methods: {
-    days: function (){
-      var ans = [];
+    days: function () {
+      var ans = []
       for (var i = 0; i < this.numbers.length; i++) {
-        let d = this.numbers[i].date;
-        if (ans.indexOf(d) == -1) {
+        let d = this.numbers[i].date
+        if (ans.indexOf(d) === -1) {
           ans.push(d)
         }
       }
       return ans
     },
-    countF: function(d) {
-      var list = this.numbers.filter(function(k) {
-        return k.date == d
+    countF: function (d) {
+      var list = this.numbers.filter(function (k) {
+        return k.date === d
       })
-      list.sort(function(a, b) {
+      list.sort(function (a, b) {
         return parseInt(b.number) - parseInt(a.number)
       })
 
-      var ans = list.slice(0,3).map(function(u) { return parseInt(u.number) });
-      return ans;
+      var ans = list.slice(0, 3).map(function (u) { return parseInt(u.number) })
+      return ans
     },
-    nameF: function(d) {
-      var list = this.numbers.filter(function(k) {
-        return k.date == d
+    nameF: function (d) {
+      var list = this.numbers.filter(function (k) {
+        return k.date === d
       })
-      list.sort(function(a, b) {
+      list.sort(function (a, b) {
         return parseInt(b.number) - parseInt(a.number)
       })
 
-      var ans = list.slice(0,3).map(function(u) { return u.n });
-      return ans;
+      var ans = list.slice(0, 3).map(function (u) { return u.n })
+      return ans
     }
   },
-  mounted() {
+  mounted () {
     if (localStorage.dismiss2) {
-      this.dismiss2 = localStorage.dismiss2;
+      this.dismiss2 = localStorage.dismiss2
     }
   },
   watch: {
-    dismiss2(newDismiss) {
-      localStorage.dismiss2 = newDismiss;
+    dismiss2 (newDismiss) {
+      localStorage.dismiss2 = newDismiss
     }
   }
 }
