@@ -1,29 +1,30 @@
 {
   "name": "fuo",
   "version": "1.0.0",
+  "private": true,
   "description": "A Vue.js project",
   "author": "Bestian Tang 小巴 <bestian@gmail.com>",
-  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
+    "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "e2e": "node test/e2e/runner.js",
+    "start": "npm run dev",
+    "test": "npm run unit && npm run e2e",
+    "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
   "dependencies": {
-    "firebase": "^9.9.1",
     "register-service-worker": "^1.7.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.11.0",
     "vue": "^2.5.2",
     "vue-meta": "^2.4.0",
+    "vue-pwa-install": "^1.1.0",
     "vue-router": "^3.0.1",
     "vuefire": "^2.2.5"
   },
   "devDependencies": {
+    "@vue/cli-plugin-pwa": "~5.0.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -81,13 +82,13 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
 }
