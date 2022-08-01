@@ -4,8 +4,89 @@
     "uninstalled": []
   },
   "config_munge": {
-    "files": {}
+    "files": {
+      "res/xml/config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"FirebaseAnalytics\"><param name=\"android-package\" value=\"by.chemerisuk.cordova.firebase.FirebaseAnalyticsPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<preference name=\"AndroidXEnabled\" value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"GradlePluginGoogleServicesEnabled\" value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"GradlePluginGoogleServicesVersion\" value=\"4.3.8\" />",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "AndroidManifest.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            }
+          ],
+          "/manifest/application": [
+            {
+              "xml": "<meta-data android:name=\"firebase_analytics_collection_enabled\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"google_analytics_automatic_screen_reporting_enabled\" android:value=\"true\" />",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
   },
-  "installed_plugins": {},
-  "dependent_plugins": {}
+  "installed_plugins": {
+    "cordova-support-android-plugin": {
+      "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-firebase-analytics": {
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+      "ANDROID_FIREBASE_ANALYTICS_VERSION": "19.0.+",
+      "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-firebase-inappmessaging": {
+      "ANDROID_FIREBASE_INAPPMESSAGING_VERSION": "20.0.+",
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+      "ANDROID_FIREBASE_ANALYTICS_VERSION": "19.0.+",
+      "PACKAGE_NAME": "tw.bestian.fuo"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "cordova-plugin-firebase-analytics.FirebaseAnalytics",
+      "file": "plugins/cordova-plugin-firebase-analytics/www/FirebaseAnalytics.js",
+      "pluginId": "cordova-plugin-firebase-analytics",
+      "merges": [
+        "cordova.plugins.firebase.analytics"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-support-android-plugin": "1.0.2",
+    "cordova-plugin-firebase-analytics": "6.0.1",
+    "cordova-plugin-firebase-inappmessaging": "5.0.0"
+  }
 }

@@ -25,6 +25,10 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="FirebaseAnalytics">
+        <param name="ios-package" value="FirebaseAnalyticsPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>念佛號</name>
     <description>念佛號</description>
     <author email="bestian@gmail.com" href="https://www.github.com/bestian/">

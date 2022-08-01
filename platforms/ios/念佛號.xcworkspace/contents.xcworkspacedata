@@ -4,4 +4,7 @@
    <FileRef
       location = "group:念佛號.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>
