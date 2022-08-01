@@ -19,21 +19,21 @@
 /* Begin PBXContainerItemProxy section */
 		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
 		301BF550109A68C00062928A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
 		907D8123214C687600058A10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C0C01EB21E3911D50056E6CB;
 			remoteInfo = Cordova;
@@ -46,7 +46,7 @@
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* 念佛號.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "念佛號.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		302D95EE14D2391D003F00A1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		302D95EF14D2391D003F00A1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
 				EB87FDF11871DA420020F90C /* Staging */,
-				301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */,
+				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -208,11 +208,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1130;
-				TargetAttributes = {
-					1D6058900D05DD3D006BFB54 = {
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "念佛號" */;
 			compatibilityVersion = "Xcode 11.0";
@@ -227,7 +222,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 301BF52E109A57CC0062928A /* Products */;
-					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -316,6 +311,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = CH52K8X2PC;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -340,7 +336,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = CH52K8X2PC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "念佛號/念佛號-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -350,6 +349,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tw.bestian.fuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = NO;
 			};
