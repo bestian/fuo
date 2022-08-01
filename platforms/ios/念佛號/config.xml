@@ -25,8 +25,8 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="FirebaseAnalytics">
-        <param name="ios-package" value="FirebaseAnalyticsPlugin" />
+    <feature name="FirebasePlugin">
+        <param name="ios-package" value="FirebasePlugin" />
         <param name="onload" value="true" />
     </feature>
     <name>念佛號</name>

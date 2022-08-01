@@ -45,9 +45,5 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
-	<string>true</string>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<string>true</string>
 </dict>
 </plist>
