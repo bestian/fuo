@@ -47,6 +47,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-firebase-inappmessaging": "5.0.0",
     "cordova-plugin-device": "2.1.1-dev",
     "cordova-plugin-dialogs": "3.0.0-dev",
-    "cordova-plugin-inappbrowser": "5.0.1-dev"
+    "cordova-plugin-inappbrowser": "5.0.1-dev",
+    "cordova-plugin-wkwebview-engine": "1.2.2"
   };
 });

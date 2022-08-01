@@ -17,9 +17,9 @@
  under the License.
  */
 
-#import "CDVWKInAppBrowserUIDelegate.h"
+#import "CDVWKWebViewUIDelegate.h"
 
-@implementation CDVWKInAppBrowserUIDelegate
+@implementation CDVWKWebViewUIDelegate
 
 - (instancetype)initWithTitle:(NSString*)title
 {
@@ -48,7 +48,9 @@
 
     [alert addAction:ok];
 
-    [[self getViewController] presentViewController:alert animated:YES completion:nil];
+    UIViewController* rootController = [UIApplication sharedApplication].delegate.window.rootViewController;
+
+    [rootController presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)     webView:(WKWebView*)webView runJavaScriptConfirmPanelWithMessage:(NSString*)message
@@ -77,7 +79,9 @@
         }];
     [alert addAction:cancel];
 
-    [[self getViewController] presentViewController:alert animated:YES completion:nil];
+    UIViewController* rootController = [UIApplication sharedApplication].delegate.window.rootViewController;
+
+    [rootController presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)      webView:(WKWebView*)webView runJavaScriptTextInputPanelWithPrompt:(NSString*)prompt
@@ -111,17 +115,9 @@
         textField.text = defaultText;
     }];
 
-    [[self getViewController] presentViewController:alert animated:YES completion:nil];
-}
+    UIViewController* rootController = [UIApplication sharedApplication].delegate.window.rootViewController;
 
--(UIViewController*) getViewController
-{
-    return _viewController;
-}
-
--(void) setViewController:(UIViewController*) viewController
-{
-    _viewController = viewController;
+    [rootController presentViewController:alert animated:YES completion:nil];
 }
 
 @end

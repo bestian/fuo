@@ -28,6 +28,9 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "tw.bestian.fuo"
     }
   },
   "dependent_plugins": {
