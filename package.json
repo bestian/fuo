@@ -45,10 +45,13 @@
     "chromedriver": "^2.27.2",
     "copy-webpack-plugin": "^4.0.1",
     "cordova-android": "^10.1.2",
-    "cordova-ios": "^6.2.0",
+    "cordova-ios": "github:apache/cordova-ios",
+    "cordova-plugin-device": "github:apache/cordova-plugin-device",
+    "cordova-plugin-dialogs": "github:apache/cordova-plugin-dialogs",
     "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-firebase-analytics": "~6.0.0",
     "cordova-plugin-firebase-inappmessaging": "^5.0.0",
+    "cordova-plugin-inappbrowser": "github:apache/cordova-plugin-inappbrowser",
     "cordova-support-android-plugin": "~1.0.0",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
@@ -102,6 +105,11 @@
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-inappbrowser": {}
+    }
   }
 }

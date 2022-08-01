@@ -19,6 +19,15 @@
       "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
       "ANDROID_FIREBASE_ANALYTICS_VERSION": "19.0.+",
       "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "tw.bestian.fuo"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "tw.bestian.fuo"
     }
   },
   "dependent_plugins": {

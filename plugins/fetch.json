@@ -32,5 +32,29 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/apache/cordova-plugin-device.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-dialogs": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/apache/cordova-plugin-dialogs.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/apache/cordova-plugin-inappbrowser.git"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
