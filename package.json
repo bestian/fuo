@@ -52,7 +52,6 @@
     "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-firebase-analytics": "~6.0.0",
     "cordova-plugin-firebase-inappmessaging": "^5.0.0",
-    "cordova-plugin-inappbrowser": "github:apache/cordova-plugin-inappbrowser",
     "cordova-plugin-wkwebview-engine": "^1.2.2",
     "cordova-support-android-plugin": "~1.0.0",
     "cross-spawn": "^5.0.1",
@@ -108,8 +107,7 @@
     "platforms": [],
     "plugins": {
       "cordova-plugin-device": {},
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-dialogs": {}
     }
   }
 }

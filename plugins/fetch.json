@@ -49,14 +49,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-inappbrowser": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/apache/cordova-plugin-inappbrowser.git"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-wkwebview-engine": {
     "source": {
       "type": "registry",
