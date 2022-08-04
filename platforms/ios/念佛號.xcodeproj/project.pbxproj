@@ -39,6 +39,10 @@
 		EE6BCFAC037E4339BB7AEE3D /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83D6F48A05F444DBB3D36AF8 /* CDVNotification.bundle */; };
 		EECB67193F0C4089AD9F3C66 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD9EB8D672A4BAB95B00A50 /* GoogleToolboxForMac.framework */; };
 		F56E11ECCF984FED9809687E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9BB0AE200E4B62AF9171AF /* Fabric.framework */; };
+		92C6E5A7E27549449A2503D0 /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = AC35B34062B942C498635933 /* CDVWKWebViewEngine.m */; };
+		C9AC4396A79A40DAB250A5C5 /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F22C6BD361FF4D1A8F8B3213 /* CDVWKWebViewUIDelegate.m */; };
+		6C53B2CEDD1C4A55B49EC37C /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A6F46AAF4BEF887E2816 /* CDVWKProcessPoolFactory.m */; };
+		E32CCFCF2ACB4D1C954EEAEF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307955F99D794D81879B56F0 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +120,13 @@
 		F6FFEB6E1B4844DAB358701B /* Crashlytics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "念佛號/Plugins/cordova-plugin-firebase/Crashlytics.framework"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "念佛號/config.xml"; sourceTree = "<group>"; };
 		FDC662FD289A461082AF8D01 /* AudioToolbox.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AC35B34062B942C498635933 /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; name = "CDVWKWebViewEngine.m"; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F22C6BD361FF4D1A8F8B3213 /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; name = "CDVWKWebViewUIDelegate.m"; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		57D9A6F46AAF4BEF887E2816 /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; name = "CDVWKProcessPoolFactory.m"; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F0E47F119DFC48CBB08354BD /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; name = "CDVWKWebViewEngine.h"; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		0A2FA15954C64331ADA3B6BB /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; name = "CDVWKWebViewUIDelegate.h"; path = "cordova-plugin-wkwebview-engine/CDVWKWebViewUIDelegate.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		77139D232BB742A1A559B104 /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; name = "CDVWKProcessPoolFactory.h"; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		307955F99D794D81879B56F0 /* WebKit.framework */ = {isa = PBXFileReference; name = "WebKit.framework"; path = "System/Library/Frameworks/WebKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +154,7 @@
 				64FDFC9C1A514E109192DD7C /* Protobuf.framework in Frameworks */,
 				5FCC0318F41D4D5CB4FB4262 /* FirebaseRemoteConfig.framework in Frameworks */,
 				ADA4AAB5B5364B139A5A6210 /* FirebaseABTesting.framework in Frameworks */,
+				E32CCFCF2ACB4D1C954EEAEF /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +246,7 @@
 				341CC5C2BEB34152BFD4C267 /* Protobuf.framework */,
 				B19DB0C10B53466BAE597DF8 /* FirebaseRemoteConfig.framework */,
 				9DB870C5CA024306B77739D3 /* FirebaseABTesting.framework */,
+				307955F99D794D81879B56F0 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -269,6 +282,12 @@
 				7B7DA36DA2F64DC9BFFCA08F /* AppDelegate+FirebasePlugin.h */,
 				21524E3A5AB34005BAEDA469 /* FirebasePlugin.h */,
 				05B96DE960E34937A4DD4051 /* Firebase.h */,
+				AC35B34062B942C498635933 /* CDVWKWebViewEngine.m */,
+				F22C6BD361FF4D1A8F8B3213 /* CDVWKWebViewUIDelegate.m */,
+				57D9A6F46AAF4BEF887E2816 /* CDVWKProcessPoolFactory.m */,
+				F0E47F119DFC48CBB08354BD /* CDVWKWebViewEngine.h */,
+				0A2FA15954C64331ADA3B6BB /* CDVWKWebViewUIDelegate.h */,
+				77139D232BB742A1A559B104 /* CDVWKProcessPoolFactory.h */,
 			);
 			name = Plugins;
 			path = "念佛號/Plugins";
@@ -405,6 +424,9 @@
 				1E4530010B2A446597040DE2 /* CDVNotification.m in Sources */,
 				4B15DD89F9384BC4BF7A99A4 /* AppDelegate+FirebasePlugin.m in Sources */,
 				1F386E8EB59740348A94496F /* FirebasePlugin.m in Sources */,
+				92C6E5A7E27549449A2503D0 /* CDVWKWebViewEngine.m in Sources */,
+				C9AC4396A79A40DAB250A5C5 /* CDVWKWebViewUIDelegate.m in Sources */,
+				6C53B2CEDD1C4A55B49EC37C /* CDVWKProcessPoolFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

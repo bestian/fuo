@@ -107,7 +107,8 @@
     "platforms": [],
     "plugins": {
       "cordova-plugin-device": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-wkwebview-engine": {}
     }
   }
 }
