@@ -1,6 +1,6 @@
 {
   "name": "fuo",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "description": "A Vue.js project",
   "author": "Bestian Tang 小巴 <bestian@gmail.com>",
@@ -46,7 +46,7 @@
     "chromedriver": "^2.27.2",
     "copy-webpack-plugin": "^4.0.1",
     "cordova-android": "^10.1.2",
-    "cordova-ios": "^6.2.0",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-device": "github:apache/cordova-plugin-device",
     "cordova-plugin-dialogs": "github:apache/cordova-plugin-dialogs",
     "cordova-plugin-firebase": "^2.0.5",
