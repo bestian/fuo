@@ -1,6 +1,6 @@
 {
   "name": "fuo",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "private": true,
   "description": "A Vue.js project",
   "author": "Bestian Tang 小巴 <bestian@gmail.com>",
@@ -16,6 +16,7 @@
   "dependencies": {
     "firebase": "^9.6.11",
     "jquery": "^3.6.0",
+    "open": "^8.4.0",
     "register-service-worker": "^1.7.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.11.0",
@@ -104,9 +105,7 @@
     "npm": ">= 3.0.0"
   },
   "cordova": {
-    "platforms": [
-      "android"
-    ],
+    "platforms": [],
     "plugins": {
       "cordova-plugin-device": {},
       "cordova-plugin-dialogs": {},
