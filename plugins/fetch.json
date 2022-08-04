@@ -1,14 +1,4 @@
 {
-  "cordova-plugin-firebase-inappmessaging": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-firebase-inappmessaging"
-    },
-    "is_top_level": true,
-    "variables": {
-      "ANDROID_FIREBASE_INAPPMESSAGING_VERSION": "20.0.+"
-    }
-  },
   "cordova-plugin-firebase-analytics": {
     "source": {
       "type": "registry",
