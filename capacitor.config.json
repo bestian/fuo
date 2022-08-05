@@ -1,0 +1,6 @@
+{
+  "appId": "tw.bestian.fuo",
+  "appName": "fuo",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

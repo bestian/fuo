@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">fuo</string>
+    <string name="title_activity_main">fuo</string>
+    <string name="package_name">tw.bestian.fuo</string>
+    <string name="custom_url_scheme">tw.bestian.fuo</string>
+</resources>

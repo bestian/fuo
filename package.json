@@ -14,6 +14,10 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
   "dependencies": {
+    "@capacitor/android": "^4.0.1",
+    "@capacitor/cli": "^4.0.1",
+    "@capacitor/core": "^4.0.1",
+    "@capacitor/ios": "^4.0.1",
     "firebase": "^9.6.11",
     "jquery": "^3.6.0",
     "open": "^8.4.0",
