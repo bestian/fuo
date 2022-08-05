@@ -26,7 +26,7 @@
   "cordova-plugin-device": {
     "source": {
       "type": "registry",
-      "id": "https://github.com/apache/cordova-plugin-device.git"
+      "id": "cordova-plugin-device"
     },
     "is_top_level": true,
     "variables": {}
@@ -34,7 +34,7 @@
   "cordova-plugin-dialogs": {
     "source": {
       "type": "registry",
-      "id": "https://github.com/apache/cordova-plugin-dialogs.git"
+      "id": "cordova-plugin-dialogs"
     },
     "is_top_level": true,
     "variables": {}
