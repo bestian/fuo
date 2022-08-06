@@ -27,11 +27,7 @@
       </div>
 
       <div class="field">
-        <div class="ui buttons">
-          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
-          <div class="or"></div>
-          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
-        </div>
+        <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
       </div>
     </form>
 
@@ -70,11 +66,7 @@
       </div>
 
       <div class="field">
-        <div class="ui buttons">
-          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
-          <div class="or"></div>
-          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
-        </div>
+        <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
       </div>
     </form>
 
