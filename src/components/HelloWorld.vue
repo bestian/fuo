@@ -122,8 +122,8 @@ export default {
     },
     submit: function () {
       if (!this.name) {
-        alert('請輸入您的大名');
-        return;
+        alert('請輸入您的大名')
+        return
       }
       var o = {
         uid: this.uid || '123',
@@ -134,12 +134,12 @@ export default {
         number: this.number
       }
       if (this.number && parseInt(this.number) > 0) {
-        if (this.numbers.filter(function(u){
-          return u.n == o.n && u.date == o.date
-        }).length == 0) {
-          this.$firebaseRefs.numbers.push(o);
-          this.number = 0;
-          window.alert('登入成功:' + o.n + '今天念了' + o.number +  '聲佛號')
+        if (this.numbers.filter(function (u) {
+          return u.n === o.n && u.date === o.date
+        }).length === 0) {
+          this.$firebaseRefs.numbers.push(o)
+          this.number = 0
+          window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
         } else {
           window.alert('您今天已經登錄過了，請明天再來')
         }
