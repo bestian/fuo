@@ -55,6 +55,7 @@
     "cordova-support-android-plugin": "~1.0.0",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
+    "electron": "^20.0.2",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
