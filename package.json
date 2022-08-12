@@ -1,8 +1,6 @@
 {
   "name": "fuo",
-  "type": "module",
-  "main": "src/main.js",
-  "version": "1.6.0",
+  "version": "1.8.0",
   "private": true,
   "description": "A Vue.js project",
   "author": "Bestian Tang 小巴 <bestian@gmail.com>",

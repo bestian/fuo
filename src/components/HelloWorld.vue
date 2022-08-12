@@ -12,17 +12,21 @@
     <form class="ui form container" v-show="uid || true">
       <div class="fields">
         <div class="field">
-
-          <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label>
+          <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
-          <label><i class = "calendar icon"/>今天日期：</label>
-          <input type="text" name="" v-model = "date" placeholder="今天日期: 如2022/7/22" />
+
+          <label><i class = "user icon"/>您的姓名/法名：
+          <input type="text" name="" v-model = "name"/> </label> 
+        
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
           <input type="number" v-model = "number" />
+        </div>
+        <div class="field">
+          <label><i class = "comment icon"/>您念佛號的原因：</label>
+          <input type="number" v-model = "reason" />
         </div>
       </div>
 
@@ -52,16 +56,21 @@
     <form class="ui form container" v-show="numbers[0]">
       <div class="fields">
         <div class="field">
-          <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label>
+          <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
-          <label><i class = "calendar icon"/>今天日期：</label>
-          <input type="text" name="" v-model = "date" placeholder="今天日期: 如2022/7/22" />
+
+          <label><i class = "user icon"/>您的姓名/法名：
+          <input type="text" name="" v-model = "name"/> </label> 
+        
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
           <input type="number" v-model = "number" />
+        </div>
+        <div class="field">
+          <label><i class = "comment icon"/>您念佛號的原因：</label>
+          <input type="number" v-model = "reason" />
         </div>
       </div>
 
@@ -90,6 +99,7 @@ export default {
     date: new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate(),
     mode: 'today',
     number: 0,
+    reason: '',
     p: '',
     msg: '',
     key: '',
@@ -128,6 +138,7 @@ export default {
       var o = {
         uid: this.uid || '123',
         n: this.name,
+        reason: this.reason,
         photoURL: this.photoURL || 'https://bestian.github.io/number/img/number.jpg',
         time: (new Date()).getTime(),
         date: this.date,
@@ -177,20 +188,26 @@ export default {
       })
     }
   },
-  mounted () {
+  mounted() {
     if (localStorage.name) {
-      this.name = localStorage.name
+      this.name = localStorage.name;
     }
     if (localStorage.dismiss) {
-      this.dismiss = localStorage.dismiss
+      this.dismiss = localStorage.dismiss;
+    }
+    if (localStorage.reason) {
+      this.reason = localStorage.reason;
     }
   },
   watch: {
-    name (newName) {
-      localStorage.name = newName
+    name(newName) {
+      localStorage.name = newName;
     },
-    dismiss (newDismiss) {
-      localStorage.dismiss = newDismiss
+    reason(newReason) {
+      localStorage.reason = newReason;
+    },
+    dismiss(newDismiss) {
+      localStorage.dismiss = newDismiss;
     }
   }
 }
