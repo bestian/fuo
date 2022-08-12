@@ -15,10 +15,8 @@
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
-
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label> 
-        
+          <input type="text" name="" v-model = "name"/> </label>
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
@@ -59,10 +57,8 @@
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
-
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label> 
-        
+          <input type="text" name="" v-model = "name"/> </label>
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
@@ -188,26 +184,26 @@ export default {
       })
     }
   },
-  mounted() {
+  mounted () {
     if (localStorage.name) {
-      this.name = localStorage.name;
+      this.name = localStorage.name
     }
     if (localStorage.dismiss) {
-      this.dismiss = localStorage.dismiss;
+      this.dismiss = localStorage.dismiss
     }
     if (localStorage.reason) {
-      this.reason = localStorage.reason;
+      this.reason = localStorage.reason
     }
   },
   watch: {
-    name(newName) {
-      localStorage.name = newName;
+    name (newName) {
+      localStorage.name = newName
     },
-    reason(newReason) {
-      localStorage.reason = newReason;
+    reason (newReason) {
+      localStorage.reason = newReason
     },
-    dismiss(newDismiss) {
-      localStorage.dismiss = newDismiss;
+    dismiss (newDismiss) {
+      localStorage.dismiss = newDismiss
     }
   }
 }
