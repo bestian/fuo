@@ -1,6 +1,6 @@
 {
   "name": "fuo",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "private": true,
   "description": "A Vue.js project",
   "author": "Bestian Tang 小巴 <bestian@gmail.com>",
@@ -18,6 +18,7 @@
     "@capacitor/cli": "^4.0.1",
     "@capacitor/core": "^4.0.1",
     "@capacitor/ios": "^4.0.1",
+    "capacitor-rate-app": "^3.0.0",
     "firebase": "^9.6.11",
     "jquery": "^3.6.0",
     "open": "^8.4.0",

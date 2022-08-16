@@ -82,6 +82,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import { numbersRef } from '../firebase'
+import { RateApp } from 'capacitor-rate-app';
 
 export default {
   name: 'HelloWorld',
@@ -147,6 +148,7 @@ export default {
           this.$firebaseRefs.numbers.push(o)
           this.number = 0
           window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
+          RateApp.requestReview()
         } else {
           window.alert('您今天已經登錄過了，請明天再來')
         }
