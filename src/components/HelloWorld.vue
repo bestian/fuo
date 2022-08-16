@@ -82,7 +82,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import { numbersRef } from '../firebase'
-import { RateApp } from 'capacitor-rate-app';
+import { RateApp } from 'capacitor-rate-app'
 
 export default {
   name: 'HelloWorld',
