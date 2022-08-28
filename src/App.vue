@@ -1,6 +1,7 @@
 <template>
   <div id='app'>
-    <div id='nav' class='ui menu'>
+    <router-view/>
+    <div id='nav' class='ui menu fb'>
       <router-link class = 'item' to ='/'>
         <i class ='home icon'/>
         <span class='fat-only'>首頁</span></router-link>
@@ -24,7 +25,6 @@
         <a class = 'item fat-only' href='https://number-59440-default-rtdb.firebaseio.com/numbers.json' target='_blank'><i class ='download icon'/>資料下載</a>
       </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -186,7 +186,6 @@ label, input {
 }
 
 @media screen and (max-width: 600px) {
-
   .fat-only {
     display: none !important;
   }
@@ -199,5 +198,15 @@ label, input {
   border-radius: 10px;
   -webkit-animation: jump 1s linear infinite;
   animation: jump 1s linear infinite;
+}
+
+.hello, .about {
+  padding-bottom: 50px;
+}
+
+.fb {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 </style>
