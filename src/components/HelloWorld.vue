@@ -1,16 +1,22 @@
 <template>
   <div class="hello">
-    <h1><img src="../assets/fuo.jpg" class="avatar" alt="fuo"/>永明佛寺念佛共修</h1>
-
     <div class="ui segment container" v-show="!dismiss">
       <h3 class ="ui header"> 使用說明</h3>
-      <p>請在網站上登錄您的名字和今天念了幾聲佛號，再按「登錄佛號」按鈕即可</p>
-      <p>每個名字每天只能登錄一次，請在晚上7:30前登錄以便回向，永明佛寺會在晚上7:30-8:00間回向</p>
-      <p>回向是針對疫情和法界與地球揚升到淨土，願大眾福慧增長，人人平安，超生淨土&nbsp;&nbsp;&nbsp;&nbsp;<a class="ui tiny gray button" @click="dismiss = true">不再顯示提示</a></p>
+      <p>請在網站上登錄您的名字和今天念了幾聲佛號，再按「登錄佛號」按鈕即可。</p>
+      <p>每個名字每天只能登錄一次，請在晚上7:30前登錄以便回向，永明佛寺會在晚上7:30-8:00間回向。</p>
+      <p>回向是針對疫情和法界與地球揚升到淨土，願大眾福慧增長，人人平安，超生淨土。</p>
       <p>永明佛寺地址：台東縣太麻里鄉華源村南北坑58-1號。永明佛寺電話：<a herf="tel:0937280910">0937280910</a>、<a herf="tel:0982029814">0982029814</a></p>
+
+      <p>目前有<router-link class = "item" to ="/about"><i class ="plus icon"/>
+        <span class="fat-only">加總</span></router-link>的功能，您可以輸入關鍵字打自己的名字，查到所有的記錄和加總。</p>
+
+      <p>若您希望在其他佛寺使用類似的軟體，<br/>可以在<i class = "github icon"/>Github上，將本專案創建分叉版(Fork)，自行修改架站。</p>
+      <p>原始碼完全公開，請見此：<a href="https://github.com/bestian/number" target="_blank"><i class = "github icon"/>原始碼</a>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;<a class="ui tiny gray button" @click="dismiss = true">不再顯示提示</a></p>
     </div>
 
-    <form class="ui form container" v-show="uid || true">
+    <form class="ui form container">
       <div class="fields">
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
@@ -24,35 +30,38 @@
           <input type="number" v-model = "number" />
         </div>
         <div class="field">
-          <label><i class = "comment icon"/>您念佛號的原因：</label>
-          <input type="number" v-model = "reason" />
+          <label><i class = "question icon"/>您念佛號的原因：</label>
+          <input type="text" v-model = "reason" />
         </div>
       </div>
 
       <div class="field">
-        <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+        <div class="ui buttons">
+          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+          <div class="or"></div>
+          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
+        </div>
       </div>
     </form>
 
-    <div class="ui divider"></div>
+    <div class="ui divider" v-show="step === 1"></div>
 
-    <select id="s" class="ui dropdown" v-model="mode">
+    <select id="s" class="ui dropdown" v-model="mode" v-show="step === 1">
       <option value="">模式</option>
       <option value="today">今日</option>
       <option value="all">所有</option>
     </select>
 
-    <div class="ui list container left aligned" v-show="mode == 'today'">
-      <div class="item" v-for = "n in t(s(numbers))" :key="n.n + n.date"> <img class="avatar" :src="n.photoURL" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
+    <div class="ui list container left aligned" v-show="mode === 'today' && step === 1">
+      <div class="item" v-for = "n in t(s(numbers))" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
-    <div class="ui list container left aligned" v-show="mode == 'all'">
-      <div class="item" v-for = "n in s(numbers)" :key="n.n + n.date"> <img class="avatar" :src="n.photoURL" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
+    <div class="ui list container left aligned" v-show="mode === 'all' && step === 1">
+      <div class="item" v-for = "n in s(numbers)" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
-    <div class="ui divider"></div>
-
-    <form class="ui form container" v-show="numbers[0]">
+    <div class="ui divider" v-show="step === 1"></div>
+    <form class="ui form container" v-show="numbers[0] && step === 1">
       <div class="fields">
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
@@ -66,13 +75,17 @@
           <input type="number" v-model = "number" />
         </div>
         <div class="field">
-          <label><i class = "comment icon"/>您念佛號的原因：</label>
-          <input type="number" v-model = "reason" />
+          <label><i class = "question icon"/>您念佛號的原因：</label>
+          <input type="text" v-model = "reason" />
         </div>
       </div>
 
       <div class="field">
-        <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+        <div class="ui buttons">
+          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+          <div class="or"></div>
+          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
+        </div>
       </div>
     </form>
 
@@ -82,37 +95,40 @@
 <script>
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
-import { numbersRef } from '../firebase'
-import { RateApp } from 'capacitor-rate-app'
 
 export default {
   name: 'HelloWorld',
   metaInfo: {
     title: '歡迎'
   },
-  firebase: {
-    numbers: numbersRef
-  },
+  props: ['numbers'],
   data: () => ({
+    step: 0,
     date: new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate(),
     mode: 'today',
     number: 0,
-    reason: '',
     p: '',
     msg: '',
+    reason: '',
     key: '',
     edit: '',
     read: 0,
     user: '',
     name: '',
     token: '',
-    numbers: [],
     uid: '',
     provider: '',
     photoURL: '',
     dismiss: false
+
   }),
   methods: {
+    par (u) {
+      if (u === 'https://bestian.github.io/number/img/number.jpeg') {
+        u = 'https://bestian.github.io/number/img/number.jpg'
+      }
+      return u
+    },
     t: function (list) {
       var ans = list.filter(function (u) {
         return u.date === new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate()
@@ -120,6 +136,7 @@ export default {
       return ans
     },
     s: function (list) {
+      // console.log(list)
       var l = list.slice().sort(function (a, b) {
         var arr1 = a.date.split('/')
         var arr2 = b.date.split('/')
@@ -137,7 +154,7 @@ export default {
         uid: this.uid || '123',
         n: this.name,
         reason: this.reason,
-        photoURL: this.photoURL || 'https://bestian.github.io/number/img/number.jpg',
+        photoURL: this.par(this.photoURL),
         time: (new Date()).getTime(),
         date: this.date,
         number: this.number
@@ -149,7 +166,6 @@ export default {
           this.$firebaseRefs.numbers.push(o)
           this.number = 0
           window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
-          RateApp.requestReview()
         } else {
           window.alert('您今天已經登錄過了，請明天再來')
         }
@@ -303,6 +319,14 @@ a {
 
 #s {
   font-size: 16px;
+}
+
+.fuo {
+  width: 33vmin;
+  border-radius: 15px;
+  position: relative;
+  top: 3.8em;
+  z-index: -1;
 }
 
 </style>

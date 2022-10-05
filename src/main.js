@@ -10,6 +10,10 @@ import VueMeta from 'vue-meta'
 import VuePwaInstallPlugin from "vue-pwa-install"
 import 'semantic-ui-css/semantic.min.css'
 import jQuery from 'jquery'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
 
 Vue.use(VuePwaInstallPlugin)
 

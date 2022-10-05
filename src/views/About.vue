@@ -34,18 +34,13 @@
 
 <script>
 
-import { numbersRef } from '../firebase'
-
 export default {
   name: 'Sum',
   metaInfo: {
     title: '加總'
   },
-  firebase: {
-    numbers: numbersRef
-  },
+  props: ['numbers'],
   data: () => ({
-    numbers: [],
     key: ''
   }),
   methods: {
@@ -75,6 +70,7 @@ export default {
       for (var i = 0; i < this.numbers.length; i++) {
         var re = /(.+)?[/／|丨\s]+/
         let n = this.numbers[i].n.replace(re, '')
+        u = u.replace(re, '')
         n = n.replace('丨', '')
         re = /(.+)?[〈（](.+)[）〉].*/
         n = n.replace(re, '$2')

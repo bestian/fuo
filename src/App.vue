@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <router-view/>
+    <router-view :numbers = "getNumbers()"/>
     <div id='nav' class='ui menu fb'>
       <router-link class = 'item' to ='/'>
         <i class ='home icon'/>
@@ -30,8 +30,7 @@
 
 <script>
 import { BeforeInstallPromptEvent } from 'vue-pwa-install'
-
-console.log(BeforeInstallPromptEvent)
+import { numbersRef } from './firebase'
 
 export default {
   name: 'App',
@@ -42,8 +41,13 @@ export default {
     /* eslint-disable-next-line */
     titleTemplate: '%s | 永明佛寺念佛號', 
   },
+  firebase: {
+    numbers: numbersRef
+  },
   data () {
     return {
+      numbers: [],
+      oldNumbers: [],
       deferredPrompt: BeforeInstallPromptEvent
     }
   },
@@ -69,7 +73,27 @@ export default {
       return false
     })
   },
+  mounted () {
+    this.axios.get('./data/data-2022-10.json', {
+      headers: {'Access-Control-Allow-Origin': '*'
+      }}).then((data) => {
+      // console.log(data.data)
+      this.oldNumbers = data.data.numbers
+    })
+  },
   methods: {
+    getNumbers () {
+      var ans = { ...this.numbers }
+      const ks = Object.keys(this.oldNumbers)
+      for (var i = 0; i < ks.length; i++) {
+        ans[i + this.numbers.length] = this.oldNumbers[ks[i]]
+      }
+      var ans1 = []
+      for (var j = 0; j < Object.keys(ans).length; j++) {
+        ans1.push(ans[Object.keys(ans)[j]])
+      }
+      return ans1
+    },
     install () {
       console.log(this.deferredPrompt)
       if (this.deferredPrompt) {
