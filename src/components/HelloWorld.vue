@@ -52,7 +52,7 @@
       <option value="all">所有</option>
     </select>
 
-    <div class="ui list container left aligned" v-show="mode === 'today' && step === 1">
+    <div class="ui list container left aligned" v-show="mode === 'today'">
       <div class="item" v-for = "n in t(s(numbers))" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
@@ -60,7 +60,7 @@
       <div class="item" v-for = "n in s(numbers)" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
-    <div class="ui divider" v-show="step === 1"></div>
+    <div class="ui divider"></div>
     <form class="ui form container" v-show="numbers[0] && step === 1">
       <div class="fields">
         <div class="field">

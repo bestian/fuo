@@ -74,7 +74,7 @@ export default {
     })
   },
   mounted () {
-    this.axios.get('./data/data-2022-10.json', {
+    this.axios.get('./static/data/data-2022-10.json', {
       headers: {'Access-Control-Allow-Origin': '*'
       }}).then((data) => {
       // console.log(data.data)
@@ -83,6 +83,7 @@ export default {
   },
   methods: {
     getNumbers () {
+      // console.log(this.numbers)
       var ans = { ...this.numbers }
       const ks = Object.keys(this.oldNumbers)
       for (var i = 0; i < ks.length; i++) {
@@ -92,6 +93,7 @@ export default {
       for (var j = 0; j < Object.keys(ans).length; j++) {
         ans1.push(ans[Object.keys(ans)[j]])
       }
+      // console.log(ans1)
       return ans1
     },
     install () {
