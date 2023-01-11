@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <router-view :numbers = "getNumbers()"/>
+    <router-view :numbers = "numbers" :myS = "myS" :myTotal = "myTotal" :myToDay="myToDay"/>
     <div id='nav' class='ui menu fb'>
       <router-link class = 'item' to ='/'>
         <i class ='home icon'/>
@@ -30,7 +30,8 @@
 
 <script>
 import { BeforeInstallPromptEvent } from 'vue-pwa-install'
-import { numbersRef } from './firebase'
+import { db } from './firebase'
+import { ref, onValue } from 'firebase/database'
 
 export default {
   name: 'App',
@@ -41,14 +42,49 @@ export default {
     /* eslint-disable-next-line */
     titleTemplate: '%s | 永明佛寺念佛號', 
   },
-  firebase: {
-    numbers: numbersRef
-  },
   data () {
     return {
       numbers: [],
       oldNumbers: [],
       deferredPrompt: BeforeInstallPromptEvent
+    }
+  },
+  computed: {
+    myS () {
+      // var ans = (this.countTotal || 0) / 10000000
+      const ans = (this.myTotal || 0) * 100 / 10000000
+      console.log(ans)
+      return ans
+    },
+    myToDay () {
+      var ans = 0
+      for (var i = 0; i < this.numbers.length; i++) {
+        let n = this.numbers[i]
+        if (
+            (
+              new Date(n.time).getFullYear() === new Date().getFullYear() && new Date(n.time).getMonth() === new Date().getMonth() && new Date(n.time).getDate() === new Date().getDate()
+            )) {
+          // console.log(parseInt(n.number))
+          ans += parseInt(n.number)
+        }
+      }
+      console.log(ans)
+      return ans
+    },
+    myTotal () {
+      var ans = 0
+      for (var i = 0; i < this.numbers.length; i++) {
+        let n = this.numbers[i]
+        if (
+            (
+              new Date(n.time).getFullYear() === 2022 && new Date(n.time).getMonth() == 11 && new Date(n.time).getDate() >= 25
+            ) || ( new Date(n.time).getFullYear() > 2022)) {
+          // console.log(parseInt(n.number))
+          ans += parseInt(n.number)
+        }
+      }
+      console.log(ans)
+      return ans
     }
   },
   created () {
@@ -74,11 +110,10 @@ export default {
     })
   },
   mounted () {
-    this.axios.get('./static/data/data-2022-10.json', {
-      headers: {'Access-Control-Allow-Origin': '*'
-      }}).then((data) => {
-      // console.log(data.data)
-      this.oldNumbers = data.data.numbers
+    onValue(ref(db, 'numbers'), (snapshot) => {
+      const data = snapshot.val()
+      // console.log(data)
+      vm.numbers = data
     })
   },
   methods: {

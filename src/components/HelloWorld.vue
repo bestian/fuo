@@ -16,59 +16,67 @@
       &nbsp;&nbsp;&nbsp;&nbsp;<a class="ui tiny gray button" @click="dismiss = true">不再顯示提示</a></p>
     </div>
 
-    <form class="ui form container">
+    <form class="ui form container" v-show="step == 1 && myTotal">
       <div class="fields">
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
+
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label>
+          <input type="text" name="" v-model = "name"/> </label> 
+        
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
           <input type="number" v-model = "number" />
         </div>
         <div class="field">
-          <label><i class = "question icon"/>您念佛號的原因：</label>
+          <label><i class = "question icon"/>念佛號原因：</label>
           <input type="text" v-model = "reason" />
         </div>
       </div>
 
       <div class="field">
         <div class="ui buttons">
-          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+          <button class="ui huge green button ani tada" @click="addNumber()"><i class = "upload icon"/>登錄佛號</button>
           <div class="or"></div>
-          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
+          <button class = "ui huge orange button ani tada" @click ="loginGoogle()" v-if="!user"><i class = "google icon"/>google登入</button>
+          <button class = "ui huge blue button ani tada" @click ="logout()" v-else>
+            <img id = "r" :src="photoURL" />
+            <i class = "sign-out icon"/>登出</button>
         </div>
       </div>
     </form>
 
-    <div class="ui divider" v-show="step === 1"></div>
+    <div class="ui divider" v-show="step == 1"></div>
 
-    <select id="s" class="ui dropdown" v-model="mode" v-show="step === 1">
+    <select id="s" class="ui dropdown" v-model="mode" v-show="step == 1">
       <option value="">模式</option>
       <option value="today">今日</option>
       <option value="all">所有</option>
     </select>
 
-    <div class="ui list container left aligned" v-show="mode === 'today'">
+    <div class="ui list container left aligned" v-show="mode == 'today' && step == 1">
       <div class="item" v-for = "n in t(s(numbers))" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
-    <div class="ui list container left aligned" v-show="mode === 'all' && step === 1">
+    <div class="ui list container left aligned" v-show="mode == 'all' && step == 1">
       <div class="item" v-for = "n in s(numbers)" :key="n.n + n.date"> <img class="avatar" :src="par(n.photoURL)" v-show="n.photoURL" :alt="n.n"/> {{n.date}}: {{n.n}}念了<span class="highlight"> {{parseInt(n.number)}} 聲</span>佛號!! </div>
     </div>
 
-    <div class="ui divider"></div>
-    <form class="ui form container" v-show="numbers[0] && step === 1">
+    <div class="ui divider" v-show="step == 1"></div>
+    
+    <form class="ui form container" v-show="numbers[0] && step == 1 && myTotal">
       <div class="fields">
         <div class="field">
           <label><i class = "calendar icon"/>今天日期：{{date}}</label>
         </div>
         <div class="field">
+
           <label><i class = "user icon"/>您的姓名/法名：
-          <input type="text" name="" v-model = "name"/> </label>
+          <input type="text" name="" v-model = "name"/> </label> 
+        
         </div>
         <div class="field">
           <label><i class = "comment icon"/>您今天念了幾聲佛號：</label>
@@ -82,9 +90,12 @@
 
       <div class="field">
         <div class="ui buttons">
-          <button class="ui huge green button ani tada" @click="submit()"><i class = "upload icon"/>登錄佛號</button>
+          <button class="ui huge green button ani tada" @click="addNumber()"><i class = "upload icon"/>登錄佛號</button>
           <div class="or"></div>
-          <button class = "ui huge orange button ani tada" @click ="loginGoogle()"><i class = "google icon"/>google登入</button>
+          <button class = "ui huge orange button ani tada" @click ="loginGoogle()" v-if="!user"><i class = "google icon"/>google登入</button>
+          <button class = "ui huge blue button ani tada" @click ="logout()" v-else>
+            <img id = "r" :src="photoURL" />
+            <i class = "sign-out icon"/>登出</button>
         </div>
       </div>
     </form>
@@ -93,15 +104,19 @@
 </template>
 
 <script>
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import { auth, db } from '../firebase.js'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { ref, onValue, set } from 'firebase/database'
+
+const provider = new GoogleAuthProvider()
+provider.addScope('https://www.googleapis.com/auth/userinfo.email')
 
 export default {
   name: 'HelloWorld',
   metaInfo: {
     title: '歡迎'
   },
-  props: ['numbers'],
+  props: ['numbers', 'myS', 'myToday', 'myTotoal'],
   data: () => ({
     step: 0,
     date: new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate(),
@@ -120,7 +135,6 @@ export default {
     provider: '',
     photoURL: '',
     dismiss: false
-
   }),
   methods: {
     par (u) {
@@ -131,12 +145,13 @@ export default {
     },
     t: function (list) {
       var ans = list.filter(function (u) {
-        return u.date === new Date().getFullYear() + '/' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate()
+        return u.date === new Date().getFullYear() + ' /' + parseInt(1 + new Date().getMonth()) + '/' + new Date().getDate()
       })
       return ans
     },
     s: function (list) {
       // console.log(list)
+      list = list || []
       var l = list.slice().sort(function (a, b) {
         var arr1 = a.date.split('/')
         var arr2 = b.date.split('/')
@@ -145,7 +160,16 @@ export default {
       })
       return l
     },
-    submit: function () {
+    obj_to_list (obj) {
+      const ks = Object.keys(obj)
+      const list = ks.map(function (i) {
+        return obj[i]
+      })
+      return list
+    },
+    addNumber () {
+      const vm = this
+      var arr = [ ...this.numbers ]
       if (!this.name) {
         alert('請輸入您的大名')
         return
@@ -154,53 +178,67 @@ export default {
         uid: this.uid || '123',
         n: this.name,
         reason: this.reason,
-        photoURL: this.par(this.photoURL),
+        photoURL: (this.photoURL && this.photoURL !== 'https://bestian.github.io/number/img/number.jpeg') ? this.photoURL : 'https://bestian.github.io/number/img/number.jpg',
         time: (new Date()).getTime(),
         date: this.date,
+        notJoin: this.notJoin,
         number: this.number
       }
       if (this.number && parseInt(this.number) > 0) {
-        if (this.numbers.filter(function (u) {
-          return u.n === o.n && u.date === o.date
+        if (this.numbers.filter(function (o) {
+          return o.n === vm.name && o.date === vm.date
         }).length === 0) {
-          this.$firebaseRefs.numbers.push(o)
+          arr.push(o)
+          console.log(arr)
           this.number = 0
-          window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
+          set(ref(db, 'numbers'), arr).then(() => {
+            window.alert('登入成功:' + o.n + '今天念了' + o.number + '聲佛號')
+            localStorage.name = this.name
+          })
         } else {
-          window.alert('您今天已經登錄過了，請明天再來')
+          window.alert('您今天已登入過，請明天再來')
         }
       } else {
         window.alert('請輸入您今天念了幾聲佛號')
       }
     },
-    loginGoogle: function () {
-      var vm = this
-      var provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(function (result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        vm.provider = 'google'
-        vm.token = result.credential.accessToken
-        // The signed-in user info.
-        vm.uid = result.user.uid
-        console.log(vm.uid)
-        vm.user = result.user
-        vm.name = localStorage.name || vm.user.displayName
-        console.log(vm.user)
-        console.log(decodeURI(result.user.photoURL))
-        decodeURI(result.user.photoURL)
-        vm.photoURL = decodeURI(result.user.photoURL)
-        window.alert('Google 登入成功')
-        // ...
-      }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code
-        var errorMessage = error.message
-        // The email of the user's account used.
-        var email = error.email
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential
-        console.log(errorCode + errorMessage + email + credential)
+    logout () {
+      const vm = this
+      auth.signOut().then(function () {
+        vm.user = null
+        vm.uid = null
+        vm.photoURL = null
       })
+    },
+    loginGoogle () {
+      const vm = this
+      if (this.isInApp) {
+        window.alert('本系統不支援facebook, line等app內部瀏覽，請用一般瀏覽器開啟，方可登入，謝謝')
+      } else {
+        signInWithPopup(auth, provider).then((result) => {
+          // Th`is gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result)
+          const token = credential.accessToken
+          // The signed-in user info.
+          const user = result.user
+          vm.user = user
+          vm.email = user.providerData[0].email
+          vm.token = token
+          vm.uid = user.uid
+          vm.photoURL = decodeURI(user.photoURL)
+        }).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code
+          const errorMessage = error.message
+          // The email of the user's account used.
+          // const email = error.customData.email;
+          // The AuthCredential type that was used.
+          // const credential = GoogleAuthProvider.credentialFromError(error);
+          console.log(errorCode)
+          console.log(errorMessage)
+        })
+      // signInWithRedirect(auth, provider)
+      }
     }
   },
   mounted () {
